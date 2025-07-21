@@ -1,32 +1,50 @@
 clc; clear; close all;
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % This plot controls the test for preventing autoimmune disease in my
 % simulation. It also generates the figures seen in the manuscript
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------------------------------------------------------------------------------%
+%                                       Environment set up
+% Grabbing file location
+scriptFull = matlab.desktop.editor.getActiveFilename;
+% Grabbing parts of the location
+scriptDir = fileparts(scriptFull);
+%Moving to file location
+cd(scriptDir)
+
+addpath('../core_LHS/')
+
 
 %-------------------------------------------------------------------------------------------------------%
 %                                       Only make changes here
 % Here are the choices {'mu', 'z', 'g', 'alpha', 'c', 'epsilon', 'b_R', 'beta', 'a', 'b_T', 'e_T', 'e_R', 'kA',...
-%    'j', 'kB', 'n', 'd', 'nK', 'rK', 'Ki', 'Kj', 'dKO', 'koKA', 'koj'};
-CondKeys = {'b_R', 'd', 'dKO', 'kB', 'epsilon'};
-SampleSize = 3000;
+%    'j', 'kB', 'n', 'd', 'nK', 'rK', 'Ki', 'Kj', 'dKO', 'koKA', 'koj', 'kob_R'};
+CondKeys = {'kA', 'koKA', 'j', 'koj', 'b_R', 'kob_R'};
+SampleSize = 3;%3000;
 PctChange = 0.6; %What percentage should the initial conditions vary?
-EntryNumber = %563;%313;%27
+EntryNumber = 563;
 PlotType = "Percentile"; % "Percentile" (10 and 90) or "Std" (1 std above and below the mean)
-tx = 1:432;%600;%432; %Model is set up for per hour
+tx = 1:600; %Model is set up for per hour
+
+
+%Which figure do you want to plot?
+% "A" = No change in paramter values
+% "B" = 3x increase of the clearance rate
+% "C" = 83% reduction in the KA paramter
+
+fig_plot = "C";
+
 %--------------------------------------------------------------------------------------------------------%
 
 %Preparing 
-FileName = '../Data/ParameterSearch_opnall5.csv';
-% FileName = '../Data/ParameterSearch_opnall4.csv'; 
-% FileName = '../Data/ParameterSearch_opnall2.csv';
-% FileName = '../Data/ParameterSets.csv';
+FileName = '../../Data/ParameterSearch_final.csv';
 p = GetParameters(EntryNumber, FileName);
 
 mu=         p(1);%Thymic Naive
 z =         p(2); %Prol Naive
 g =         p(3); %Naive Death
-alpha =     p(4);  %Thymic Tregsake t
+alpha =     p(4);  %Thymic Tregs
 c =         p(5); %Naive Derived Tregs
 epsilon =   p(6); %Treg Prol
 b_R =       p(7); %Treg Death
@@ -35,8 +53,8 @@ a =         p(9); %Activated Prol
 b_T =       p(10); %ActT Death
 e_T =       p(11); %ActT Consumption
 e_R =       p(12); %Treg Consumption
-kA =        p(13);%128472;% 40% reduction; %Beta Suppression
-j =         p(14); %4.5018e-07;% 40% increasep(14); %Deactivation 
+kA =        p(13); %Beta Suppression
+j =         p(14); %Deactivation 
 kB =        p(15); %Treg Death Suppression
 n =         p(16);
 d =         p(17); %IL-2 production Rate
@@ -46,10 +64,29 @@ Ki =        p(21);%Half rate for activation suppression boost
 Kj =        p(22);% Half rate for deactivation boost
 dKO =       p(23); %Production rate of IL-2 KO 
 
+
+%-------------------------------------------------------------------------%
+%                   Setting up Figure conditions
+%-------------------------------------------------------------------------%
+
+if fig_plot == "A"
+    koj =       p(14);% * 3
+    koKA =      p(13);% * 0.17; 
+    kob_R =     p(7);% * 0.9; 
+elseif fig_plot == "B"
+    koj =       p(14) * 3;
+    koKA =      p(13);% * 0.17; 
+    kob_R =     p(7);% * 0.9; 
+elseif fig_plot == "C"
+    koj =       p(14);% * 3;
+    koKA =      p(13) * 0.17; 
+    kob_R =     p(7);% * 0.9; 
+end
+       
 % Trying to prevent autoimmune disease with the parameters below:
-koKA = p(13); %214120;%64236;% - 70% or 30% Original value (27) 214120;
-koj = p(14); %4.8234e-07;% 150%Original value (27) 3.2156e-07;
-kob_R = p(7); %0.0100; % %0.0100
+%koj =       p(14) * 3; %4.8234e-07;% 150%Original value (27) 3.2156e-07;
+%koKA =      p(13);% * 0.17; %214120;%64236;% - 70% or 30% Original value (27) 214120;
+%kob_R =     p(7);% * 0.9; %0.0100; % %0.0100
 
 %Do not change this order
 
@@ -335,9 +372,8 @@ StatsOfCells = CalculateTheFillRanges(CellularData, tx);
 
 %------------ Rates calculated and stats for those rates------------------%
 ModelRates = CalculatingRatesFromLHSSampling(DataForRates, SampleSize, p, tx);
-%%
+
 %------------ Plotting lhs rates results--------Activation Suppression Strength----------%
-PlottingFillPrm_Fig4_color(ModelRates, StatsOfCells, tx, PlotType, CondKeys, PctChange)
-PlottingFillPrm_Fig4_color_log(ModelRates, StatsOfCells, tx, PlotType, CondKeys, PctChange)
+PlottingFillPrm_Fig5(ModelRates, StatsOfCells, tx, PlotType, CondKeys, PctChange, fig_plot)
 
 

@@ -60,9 +60,9 @@ FaceAlpha = 0.25;
 LineWidth = 2.5;
 
 %Setting up variables for saving the figure    
-loc1 = '../Plots/LHS_Parameters/Figure4/';
+loc1 = '../../Plots/Figure4/';
 plt1 = append(loc1, 'Figure_4_Color.pdf');
-
+disp(plt1)
 PLT1 = figure('Visible', 'off');
 %set(PLT1,'Position', [left bottom width height]); %This sents the position of the figure itself
 

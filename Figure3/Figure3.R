@@ -2,12 +2,12 @@ library(ggplot2)
 library(ggpubr)
 library(ggbreak)
 
-ModeldataWT = read.csv("C:/Laptop Backups/HomestaticExpansionProject/Code/Stats plots and data management/ModelOutputWT2.csv")
-ModeldataKO = read.csv("C:/Laptop Backups/HomestaticExpansionProject/Code/Stats plots and data management/ModelOutputKO2.csv")
-WTData = read.csv("C:/Laptop Backups/HomestaticExpansionProject/Code/Modeling/Matlab/RawData/ActivatedWTSpleen.csv")
-ProlWTData = read.csv("C:/Laptop Backups/HomestaticExpansionProject/Code/Modeling/Matlab/RawData/WTProl.csv")
-KOData = read.csv("C:/Laptop Backups/HomestaticExpansionProject/Code/Modeling/Matlab/RawData/ActivatedKOSpleen.csv")
-ProlKOData = read.csv("C:/Laptop Backups/HomestaticExpansionProject/Code/Modeling/Matlab/RawData/KOProl.csv")
+ModeldataWT = read.csv("../../Data/ModelOutputWT2.csv")
+ModeldataKO = read.csv("../../Data/ModelOutputKO2.csv")
+WTData = read.csv("../..//RawData/ActivatedWTSpleen.csv")
+ProlWTData = read.csv("../..//RawData/WTProl.csv")
+KOData = read.csv("../..//RawData/ActivatedKOSpleen.csv")
+ProlKOData = read.csv("../..//RawData/KOProl.csv")
 
 WTData$hours = WTData$hours / 24
 KOData$hours = KOData$hours / 24
@@ -438,7 +438,7 @@ TregCTWT = ggplot(WTData, aes(x=hours, y=X4TregCT)) + geom_point(size = dotsize)
         axis.ticks.length=unit(.25, "cm"),
         text = element_text(size=20))+
   labs(titles = "Total Treg Counts", x = "Age in days", y = "Cell Counts")+
-  scale_y_continuous(limits = c(0,820000))
+  scale_y_continuous(limits = c(0,1050000), breaks = c(0, 2.5e+05, 5e+05, 7.5e+05, 1e+06), labels = c(0,2.5,"5.0",7.5,10))
 
 # Thymic Tregs
 
@@ -454,7 +454,7 @@ ThymicTregWT = ggplot(WTData, aes(x=hours, y=ThymicDerivedTregsCT)) + geom_point
         axis.ticks.length=unit(.25, "cm"),
         text = element_text(size=20))+
   labs(titles = "Thymic Derived Tregs", x = "Age in days", y = "Cell Counts")+
-  scale_y_continuous(limits = c(0,820000))
+  scale_y_continuous(limits = c(0,1050000), breaks = c(0, 2.5e+05, 5e+05, 7.5e+05, 1e+06), labels = c(0,2.5,"5.0",7.5,10))
 
 #Naive Derived Tregs
 NaiveTregWT = ggplot(WTData, aes(x=hours, y=NaiveDerivedTregsCT)) + geom_point(size = dotsize) +
@@ -469,7 +469,7 @@ NaiveTregWT = ggplot(WTData, aes(x=hours, y=NaiveDerivedTregsCT)) + geom_point(s
         axis.ticks.length=unit(.25, "cm"),
         text = element_text(size=20))+
   labs(titles = "Peripherally Derived Tregs", x = "Age in days", y = "Cell Counts")+
-  scale_y_continuous(limits = c(0,820000))
+  scale_y_continuous(limits = c(0,1050000), breaks = c(0, 2.5e+05, 5e+05, 7.5e+05, 1e+06), labels = c(0,2.5,"5.0",7.5,10))
 
 
 #Proliferating Tregs
@@ -485,7 +485,7 @@ ProlTregWT = ggplot(ProlWTData, aes(x=hours, y=X4TregProlCT)) + geom_point(size 
         axis.ticks.length=unit(.25, "cm"),
         text = element_text(size=20))+
   labs(titles = "Proliferating Tregs", x = "Age in days", y = "Cell Counts")+
-  scale_y_continuous(limits = c(0,820000))
+  scale_y_continuous(limits = c(0,1050000), breaks = c(0, 2.5e+05, 5e+05, 7.5e+05, 1e+06), labels = c(0,2.5,"5.0",7.5,10))
 
 
 
@@ -493,21 +493,20 @@ ProlTregWT = ggplot(ProlWTData, aes(x=hours, y=X4TregProlCT)) + geom_point(size 
 # IL-2 KO Tregs
 #############################################
 
-
 #Total Tregs
 TregCTKO = ggplot(KOData, aes(x=hours, y=X4TregCT)) + geom_point(size = dotsize) +
-  stat_summary(fun=mean, colour="black", geom="line", linetype="dotted", lwd = Dotedline)+
-  geom_line(data = ModeldataKO, aes(x = time, y=TregCT), colour = "black", lwd = simLine)+
-  theme(panel.background = element_rect(fill = "white", colour = "black", size = 2),
-        legend.key = element_rect(fill = "white", colour = "black"),
-        legend.background = (element_rect(colour= "black", fill = "white")),
-        axis.title.x = element_text( colour="black", size=20),
-        axis.title.y = element_text( colour = "black", size = 20),
-        plot.title = element_text(lineheight=.8,  size = 20),
-        axis.ticks.length=unit(.25, "cm"),
-        text = element_text(size=20))+
-  labs(titles = "Total Treg Counts", x = "Age in days", y = "Cell Counts")+
-  scale_y_continuous(limits = c(0,820000))
+stat_summary(fun=mean, colour="black", geom="line", linetype="dotted", lwd = Dotedline)+
+geom_line(data = ModeldataKO, aes(x = time, y=TregCT), colour = "black", lwd = simLine)+
+theme(panel.background = element_rect(fill = "white", colour = "black", size = 2),
+      legend.key = element_rect(fill = "white", colour = "black"),
+      legend.background = (element_rect(colour= "black", fill = "white")),
+      axis.title.x = element_text( colour="black", size=20),
+      axis.title.y = element_text( colour = "black", size = 20),
+      plot.title = element_text(lineheight=.8,  size = 20),
+      axis.ticks.length=unit(.25, "cm"),
+      text = element_text(size=20))+
+labs(titles = "Total Treg Counts", x = "Age in days", y = "Cell Counts")+
+scale_y_continuous(limits = c(0,1050000), breaks = c(0, 2.5e+05, 5e+05, 7.5e+05, 1e+06), labels = c(0,2.5,"5.0",7.5,10))
 
 # Thymic Tregs
 
@@ -523,7 +522,7 @@ ThymicTregKO = ggplot(KOData, aes(x=hours, y=ThymicDerivedTregsCT)) + geom_point
         axis.ticks.length=unit(.25, "cm"),
         text = element_text(size=20))+
   labs(titles = "Thymic Derived Tregs", x = "Age in days", y = "Cell Counts")+
-  scale_y_continuous(limits = c(0,820000))
+  scale_y_continuous(limits = c(0,1050000), breaks = c(0, 2.5e+05, 5e+05, 7.5e+05, 1e+06), labels = c(0,2.5,"5.0",7.5,10))
 
 #Naive Derived Tregs
 NaiveTregKO = ggplot(KOData, aes(x=hours, y=NaiveDerivedTregsCT)) + geom_point(size = dotsize) +
@@ -538,7 +537,7 @@ NaiveTregKO = ggplot(KOData, aes(x=hours, y=NaiveDerivedTregsCT)) + geom_point(s
         axis.ticks.length=unit(.25, "cm"),
         text = element_text(size=20))+
   labs(titles = "Peripherally Derived Tregs", x = "Age in days", y = "Cell Counts")+
-  scale_y_continuous(limits = c(0,820000))
+  scale_y_continuous(limits = c(0,1050000), breaks = c(0, 2.5e+05, 5e+05, 7.5e+05, 1e+06), labels = c(0,2.5,"5.0",7.5,10))
 
 #Proliferating Tregs
 ProlTregKO = ggplot(ProlKOData, aes(x=hours, y=X4TregProlCT)) + geom_point(size = dotsize) +
@@ -553,7 +552,7 @@ ProlTregKO = ggplot(ProlKOData, aes(x=hours, y=X4TregProlCT)) + geom_point(size 
         axis.ticks.length=unit(.25, "cm"),
         text = element_text(size=20))+
   labs(titles = "Proliferating Tregs", x = "Age in days", y = "Cell Counts")+
-  scale_y_continuous(limits = c(0,820000))
+  scale_y_continuous(limits = c(0,1050000), breaks = c(0, 2.5e+05, 5e+05, 7.5e+05, 1e+06), labels = c(0,2.5,"5.0",7.5,10))
 
 
 

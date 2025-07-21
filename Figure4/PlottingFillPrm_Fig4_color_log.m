@@ -65,7 +65,7 @@ FaceAlpha = 0.25;
 LineWidth = 2.5;
 
 %Setting up variables for saving the figure    
-loc1 = '../Plots/LHS_Parameters/Figure4/';
+loc1 = '../../Plots/Figure4/';
 plt1 = append(loc1, 'Figure_4_Color_log.pdf');
 
 PLT1 = figure('Visible', 'off');

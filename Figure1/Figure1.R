@@ -48,10 +48,10 @@ KOColor = "#000000"
 #                     Data Prep                             #
 #-----------------------------------------------------------#
 
-WTProl = read.csv('C:/Laptop Backups/HomestaticExpansionProject/Code/Modeling/Matlab/RawData/WTProl.csv')
-KOProl = read.csv('C:/Laptop Backups/HomestaticExpansionProject/Code/Modeling/Matlab/RawData/KOProl.csv')
-ActivatedWTSpleen = read.csv('C:/Laptop Backups/HomestaticExpansionProject/Code/Modeling/Matlab/RawData/ActivatedWTSpleen.csv')
-ActivatedKOSpleen = read.csv('C:/Laptop Backups/HomestaticExpansionProject/Code/Modeling/Matlab/RawData/ActivatedKOSpleen.csv')
+WTProl = read.csv('../../RawData/WTProl.csv')
+KOProl = read.csv('../../RawData/KOProl.csv')
+ActivatedWTSpleen = read.csv('../../RawData/ActivatedWTSpleen.csv')
+ActivatedKOSpleen = read.csv('../../RawData/ActivatedKOSpleen.csv')
 
 # CD69Data = read.csv('C:/Laptop Backups/HomestaticExpansionProject/ModelData/CD69DataFromGen.csv')
 # #Removing day 0, because it is always weird
@@ -405,7 +405,7 @@ a = ggarrange(CD4CD69, EarlyActivated_CT, NonProlActT_pct, NonProlActT_CT, ProlA
 #        height = 11,
 #        width = 8)
 
-ggsave(file = "/Figure 1 - Wt vs KO/Figure1_V4_018nodata.pdf", a,
+ggsave(file = "../../Plots/Figure1.pdf", a,
        height = 11,
        width = 8)
 
