@@ -2,12 +2,12 @@ library(ggplot2)
 library(ggpubr)
 library(ggbreak)
 
-ModeldataWT = read.csv("../../Data/ModelOutputWT2.csv")
-ModeldataKO = read.csv("../../Data/ModelOutputKO2.csv")
-WTData = read.csv("../..//RawData/ActivatedWTSpleen.csv")
-ProlWTData = read.csv("../..//RawData/WTProl.csv")
-KOData = read.csv("../..//RawData/ActivatedKOSpleen.csv")
-ProlKOData = read.csv("../..//RawData/KOProl.csv")
+ModeldataWT = read.csv("../../Data/ModelOutputWT.csv")
+ModeldataKO = read.csv("../../Data/ModelOutputKO.csv")
+WTData = read.csv("../../RawData/ActivatedWTSpleen.csv")
+ProlWTData = read.csv("../../RawData/WTProl.csv")
+KOData = read.csv("../../RawData/ActivatedKOSpleen.csv")
+ProlKOData = read.csv("../../RawData/KOProl.csv")
 
 WTData$hours = WTData$hours / 24
 KOData$hours = KOData$hours / 24
@@ -37,9 +37,9 @@ simLine = 2
 
 # NAIVE T CELLS
 
-NaiveCTWT = ggplot(WTData, aes(x=hours, y=NaiveCT)) + geom_point(size = dotsize) +
-  stat_summary(fun=mean, colour="black", geom="line", linetype="dotted", lwd = Dotedline)+
-  geom_line(data = ModeldataWT, aes(x = time, y=NaiveCT), colour = "black", lwd = simLine)+
+NaiveCTWT = ggplot(WTData, aes(x=hours, y=NaiveCT)) + geom_point(shape = 17, size = dotsize, colour = "#8c8c8cff") +
+  stat_summary(fun=mean, colour = "#8c8c8cff", geom="line", linetype="dotted", lwd = Dotedline)+
+  geom_line(data = ModeldataWT, aes(x = time, y=NaiveCT), colour = "#8c8c8cff", lwd = simLine)+
   theme(panel.background = element_rect(fill = "white", colour = "black", size = 2),
         legend.key = element_rect(fill = "white", colour = "black"),
         legend.background = (element_rect(colour= "black", fill = "white")),
@@ -51,11 +51,11 @@ NaiveCTWT = ggplot(WTData, aes(x=hours, y=NaiveCT)) + geom_point(size = dotsize)
   labs(titles = "Total Naive T Cell Count", x = "Age in days", y = "Cell Counts")+
   scale_y_continuous(limits = c(0,5000000), breaks = c(0, 1e+06, 2e+06, 3e+06, 4e+06, 5e+06), labels = c(0,1,2,3,4,5))
 
-#TODO: Fix the axis on these to make so it shows 1,2,3,4,5 on all of these axis'
+
 #PROLIFERATING NAIVE
-ProlNaiveWT = ggplot(ProlWTData, aes(x=hours, y=NaiveProlCT)) + geom_point(size = dotsize) +
-  stat_summary(fun=mean, colour="black", geom="line", linetype="dotted", lwd = Dotedline)+
-  geom_line(data = ModeldataWT, aes(x = time, y=ProlNaive), colour = "black", lwd = simLine)+
+ProlNaiveWT = ggplot(ProlWTData, aes(x=hours, y=NaiveProlCT)) + geom_point(shape = 17, size = dotsize, colour = "#8c8c8cff") +
+  stat_summary(fun=mean, colour = "#8c8c8cff", geom="line", linetype="dotted", lwd = Dotedline)+
+  geom_line(data = ModeldataWT, aes(x = time, y=ProlNaive), colour = "#8c8c8cff", lwd = simLine)+
   theme(panel.background = element_rect(fill = "white", colour = "black", size = 2),
         legend.key = element_rect(fill = "white", colour = "black"),
         legend.background = (element_rect(colour= "black", fill = "white")),
@@ -68,9 +68,9 @@ ProlNaiveWT = ggplot(ProlWTData, aes(x=hours, y=NaiveProlCT)) + geom_point(size 
   scale_y_continuous(limits = c(0,5000000), breaks = c(0, 1e+06, 2e+06, 3e+06, 4e+06, 5e+06), labels = c(0,1,2,3,4,5))
 
 #THYMIC NAIVE
-ThymicNaiveWT = ggplot(WTData, aes(x=hours, y=ThymicNaive)) + geom_point(size = dotsize) +
-  stat_summary(fun=mean, colour="black", geom="line", linetype="dotted", lwd = Dotedline)+
-  geom_line(data = ModeldataWT, aes(x = time, y=ThyNaive), colour = "black", lwd = simLine)+
+ThymicNaiveWT = ggplot(WTData, aes(x=hours, y=ThymicNaive)) + geom_point(shape = 17, size = dotsize, colour = "#8c8c8cff") +
+  stat_summary(fun=mean, colour = "#8c8c8cff", geom="line", linetype="dotted", lwd = Dotedline)+
+  geom_line(data = ModeldataWT, aes(x = time, y=ThyNaive), colour = "#8c8c8cff", lwd = simLine)+
   theme(panel.background = element_rect(fill = "white", colour = "black", size = 2),
         legend.key = element_rect(fill = "white", colour = "black"),
         legend.background = (element_rect(colour= "black", fill = "white")),
@@ -203,9 +203,9 @@ ggsave(file = "../../Plots/Figure3/TotalNaive.pdf", TotalNaiveOverlap)
 
 # Total Activated
 
-ActTCD4CTWT = ggplot(WTData, aes(x=hours, y=ActivatedCD4CT)) + geom_point(size = dotsize) +
-  stat_summary(fun=mean, colour="black", geom="line", linetype="dotted", lwd = Dotedline)+
-  geom_line(data = ModeldataWT, aes(x = time, y=ActTCT), colour = "black", lwd = simLine)+
+ActTCD4CTWT = ggplot(WTData, aes(x=hours, y=ActivatedCD4CT)) + geom_point(shape = 17, size = dotsize, colour = "#8c8c8cff") +
+  stat_summary(fun=mean, colour = "#8c8c8cff", geom="line", linetype="dotted", lwd = Dotedline)+
+  geom_line(data = ModeldataWT, aes(x = time, y=ActTCT), colour = "#8c8c8cff", lwd = simLine)+
   theme(panel.background = element_rect(fill = "white", colour = "black", size = 2),
         legend.key = element_rect(fill = "white", colour = "black"),
         legend.background = (element_rect(colour= "black", fill = "white")),
@@ -218,9 +218,9 @@ ActTCD4CTWT = ggplot(WTData, aes(x=hours, y=ActivatedCD4CT)) + geom_point(size =
   scale_y_continuous(limits = c(0,7075000))
 
 #PROLIFERATING ACTIVATED T
-ProlActTWT = ggplot(ProlWTData, aes(x=hours, y=ActivatedProlCT)) + geom_point(size = dotsize) +
-  stat_summary(fun=mean, colour="black", geom="line", linetype="dotted", lwd = Dotedline)+
-  geom_line(data = ModeldataWT, aes(x = time, y=ProlActT), colour = "black", lwd = simLine)+
+ProlActTWT = ggplot(ProlWTData, aes(x=hours, y=ActivatedProlCT)) + geom_point(shape = 17, size = dotsize, colour = "#8c8c8cff") +
+  stat_summary(fun=mean, colour = "#8c8c8cff", geom="line", linetype="dotted", lwd = Dotedline)+
+  geom_line(data = ModeldataWT, aes(x = time, y=ProlActT), colour = "#8c8c8cff", lwd = simLine)+
   theme(panel.background = element_rect(fill = "white", colour = "black", size = 2),
         legend.key = element_rect(fill = "white", colour = "black"),
         legend.background = (element_rect(colour= "black", fill = "white")),
@@ -233,9 +233,9 @@ ProlActTWT = ggplot(ProlWTData, aes(x=hours, y=ActivatedProlCT)) + geom_point(si
   scale_y_continuous(limits = c(0,7075000))
 
 #Naive Derived ActT
-NaiveActTWT = ggplot(WTData, aes(x=hours, y=ActivatedNaiveCT)) + geom_point(size = dotsize) +
-  stat_summary(fun=mean, colour="black", geom="line", linetype="dotted", lwd = Dotedline)+
-  geom_line(data = ModeldataWT, aes(x = time, y=ActTNaive), colour = "black", lwd = simLine)+
+NaiveActTWT = ggplot(WTData, aes(x=hours, y=ActivatedNaiveCT)) + geom_point(shape = 17, size = dotsize, colour = "#8c8c8cff") +
+  stat_summary(fun=mean, colour = "#8c8c8cff", geom="line", linetype="dotted", lwd = Dotedline)+
+  geom_line(data = ModeldataWT, aes(x = time, y=ActTNaive), colour = "#8c8c8cff", lwd = simLine)+
   theme(panel.background = element_rect(fill = "white", colour = "black", size = 2),
         legend.key = element_rect(fill = "white", colour = "black"),
         legend.background = (element_rect(colour= "black", fill = "white")),
@@ -304,9 +304,9 @@ NaiveActTKO = ggplot(KOData, aes(x=hours, y=ActivatedNaiveCT)) + geom_point(size
 
 # Total Activated
 
-ActTCD4CTWT = ggplot(WTData, aes(x=hours, y=ActivatedCD4CT)) + geom_point(size = dotsize) +
-  stat_summary(fun=mean, colour="black", geom="line", linetype="dotted", lwd = Dotedline)+
-  geom_line(data = ModeldataWT, aes(x = time, y=ActTCT), colour = "black", lwd = simLine)+
+ActTCD4CTWT = ggplot(WTData, aes(x=hours, y=ActivatedCD4CT)) + geom_point(shape = 17, size = dotsize, colour = "#8c8c8cff") +
+  stat_summary(fun=mean, colour = "#8c8c8cff", geom="line", linetype="dotted", lwd = Dotedline)+
+  geom_line(data = ModeldataWT, aes(x = time, y=ActTCT), colour = "#8c8c8cff", lwd = simLine)+
   theme(panel.background = element_rect(fill = "white", colour = "black", size = 2),
         legend.key = element_rect(fill = "white", colour = "black"),
         legend.background = (element_rect(colour= "black", fill = "white")),
@@ -319,9 +319,9 @@ ActTCD4CTWT = ggplot(WTData, aes(x=hours, y=ActivatedCD4CT)) + geom_point(size =
   scale_y_continuous(limits = c(0,7075000))
 
 #PROLIFERATING ACTIVATED T
-ProlActTWT = ggplot(ProlWTData, aes(x=hours, y=ActivatedProlCT)) + geom_point(size = dotsize) +
-  stat_summary(fun=mean, colour="black", geom="line", linetype="dotted", lwd = Dotedline)+
-  geom_line(data = ModeldataWT, aes(x = time, y=ProlActT), colour = "black", lwd = simLine)+
+ProlActTWT = ggplot(ProlWTData, aes(x=hours, y=ActivatedProlCT)) + geom_point(shape = 17, size = dotsize, colour = "#8c8c8cff") +
+  stat_summary(fun=mean, colour = "#8c8c8cff", geom="line", linetype="dotted", lwd = Dotedline)+
+  geom_line(data = ModeldataWT, aes(x = time, y=ProlActT), colour = "#8c8c8cff", lwd = simLine)+
   theme(panel.background = element_rect(fill = "white", colour = "black", size = 2),
         legend.key = element_rect(fill = "white", colour = "black"),
         legend.background = (element_rect(colour= "black", fill = "white")),
@@ -334,9 +334,9 @@ ProlActTWT = ggplot(ProlWTData, aes(x=hours, y=ActivatedProlCT)) + geom_point(si
   scale_y_continuous(limits = c(0,7075000))
 
 #Naive Derived ActT
-NaiveActTWT = ggplot(WTData, aes(x=hours, y=ActivatedNaiveCT)) + geom_point(size = dotsize) +
-  stat_summary(fun=mean, colour="black", geom="line", linetype="dotted", lwd = Dotedline)+
-  geom_line(data = ModeldataWT, aes(x = time, y=ActTNaive), colour = "black", lwd = simLine)+
+NaiveActTWT = ggplot(WTData, aes(x=hours, y=ActivatedNaiveCT)) + geom_point(shape = 17, size = dotsize, colour = "#8c8c8cff") +
+  stat_summary(fun=mean, colour = "#8c8c8cff", geom="line", linetype="dotted", lwd = Dotedline)+
+  geom_line(data = ModeldataWT, aes(x = time, y=ActTNaive), colour = "#8c8c8cff", lwd = simLine)+
   theme(panel.background = element_rect(fill = "white", colour = "black", size = 2),
         legend.key = element_rect(fill = "white", colour = "black"),
         legend.background = (element_rect(colour= "black", fill = "white")),
@@ -425,10 +425,10 @@ NaiveActTOverlap = ggplot(data=ModeldataWT, aes(x=time, y=ActTNaive)) +
 #  WT - Tregs
 ##############################################
 
-#Total Tregs
-TregCTWT = ggplot(WTData, aes(x=hours, y=X4TregCT)) + geom_point(size = dotsize) +
-  stat_summary(fun=mean, colour="black", geom="line", linetype="dotted", lwd = Dotedline)+
-  geom_line(data = ModeldataWT, aes(x = time, y=TregCT), colour = "black", lwd = simLine)+
+# Total Tregs
+TregCTWT = ggplot(WTData, aes(x=hours, y=X4TregCT)) + geom_point(shape = 17, size = dotsize, colour = "#8c8c8cff") +
+  stat_summary(fun=mean, colour = "#8c8c8cff", geom="line", linetype="dotted", lwd = Dotedline)+
+  geom_line(data = ModeldataWT, aes(x = time, y=TregCT), colour = "#8c8c8cff", lwd = simLine)+
   theme(panel.background = element_rect(fill = "white", colour = "black", size = 2),
         legend.key = element_rect(fill = "white", colour = "black"),
         legend.background = (element_rect(colour= "black", fill = "white")),
@@ -438,13 +438,13 @@ TregCTWT = ggplot(WTData, aes(x=hours, y=X4TregCT)) + geom_point(size = dotsize)
         axis.ticks.length=unit(.25, "cm"),
         text = element_text(size=20))+
   labs(titles = "Total Treg Counts", x = "Age in days", y = "Cell Counts")+
-  scale_y_continuous(limits = c(0,1050000), breaks = c(0, 2.5e+05, 5e+05, 7.5e+05, 1e+06), labels = c(0,2.5,"5.0",7.5,10))
+  scale_y_continuous(limits = c(0,1050000), breaks = c(0, 2e+05, 4e+05, 6e+05, 8e+05, 1e+06), labels = c(0,2,5,6,8,10))
 
 # Thymic Tregs
 
-ThymicTregWT = ggplot(WTData, aes(x=hours, y=ThymicDerivedTregsCT)) + geom_point(size = dotsize) +
-  stat_summary(fun=mean, colour="black", geom="line", linetype="dotted", lwd = Dotedline)+
-  geom_line(data = ModeldataWT, aes(x = time, y=ThyTregs), colour = "black", lwd = simLine)+
+ThymicTregWT = ggplot(WTData, aes(x=hours, y=ThymicDerivedTregsCT)) + geom_point(shape = 17, size = dotsize, colour = "#8c8c8cff") +
+  stat_summary(fun=mean, colour = "#8c8c8cff", geom="line", linetype="dotted", lwd = Dotedline)+
+  geom_line(data = ModeldataWT, aes(x = time, y=ThyTregs), colour = "#8c8c8cff", lwd = simLine)+
   theme(panel.background = element_rect(fill = "white", colour = "black", size = 2),
         legend.key = element_rect(fill = "white", colour = "black"),
         legend.background = (element_rect(colour= "black", fill = "white")),
@@ -454,12 +454,12 @@ ThymicTregWT = ggplot(WTData, aes(x=hours, y=ThymicDerivedTregsCT)) + geom_point
         axis.ticks.length=unit(.25, "cm"),
         text = element_text(size=20))+
   labs(titles = "Thymic Derived Tregs", x = "Age in days", y = "Cell Counts")+
-  scale_y_continuous(limits = c(0,1050000), breaks = c(0, 2.5e+05, 5e+05, 7.5e+05, 1e+06), labels = c(0,2.5,"5.0",7.5,10))
+  scale_y_continuous(limits = c(0,1050000), breaks = c(0, 2e+05, 4e+05, 6e+05, 8e+05, 1e+06), labels = c(0,2,5,6,8,10))
 
 #Naive Derived Tregs
-NaiveTregWT = ggplot(WTData, aes(x=hours, y=NaiveDerivedTregsCT)) + geom_point(size = dotsize) +
-  stat_summary(fun=mean, colour="black", geom="line", linetype="dotted", lwd = Dotedline)+
-  geom_line(data = ModeldataWT, aes(x = time, y=TregNaive), colour = "black", lwd = simLine)+
+NaiveTregWT = ggplot(WTData, aes(x=hours, y=NaiveDerivedTregsCT)) + geom_point(shape = 17, size = dotsize, colour = "#8c8c8cff") +
+  stat_summary(fun=mean, colour = "#8c8c8cff", geom="line", linetype="dotted", lwd = Dotedline)+
+  geom_line(data = ModeldataWT, aes(x = time, y=TregNaive), colour = "#8c8c8cff", lwd = simLine)+
   theme(panel.background = element_rect(fill = "white", colour = "black", size = 2),
         legend.key = element_rect(fill = "white", colour = "black"),
         legend.background = (element_rect(colour= "black", fill = "white")),
@@ -469,13 +469,13 @@ NaiveTregWT = ggplot(WTData, aes(x=hours, y=NaiveDerivedTregsCT)) + geom_point(s
         axis.ticks.length=unit(.25, "cm"),
         text = element_text(size=20))+
   labs(titles = "Peripherally Derived Tregs", x = "Age in days", y = "Cell Counts")+
-  scale_y_continuous(limits = c(0,1050000), breaks = c(0, 2.5e+05, 5e+05, 7.5e+05, 1e+06), labels = c(0,2.5,"5.0",7.5,10))
+  scale_y_continuous(limits = c(0,1050000), breaks = c(0, 2e+05, 4e+05, 6e+05, 8e+05, 1e+06), labels = c(0,2,5,6,8,10))
 
 
 #Proliferating Tregs
-ProlTregWT = ggplot(ProlWTData, aes(x=hours, y=X4TregProlCT)) + geom_point(size = dotsize) +
-  stat_summary(fun=mean, colour="black", geom="line", linetype="dotted", lwd = Dotedline)+
-  geom_line(data = ModeldataWT, aes(x = time, y=ProlTreg), colour = "black", lwd = simLine)+
+ProlTregWT = ggplot(ProlWTData, aes(x=hours, y=X4TregProlCT)) + geom_point(shape = 17, size = dotsize, colour = "#8c8c8cff") +
+  stat_summary(fun=mean, colour = "#8c8c8cff", geom="line", linetype="dotted", lwd = Dotedline)+
+  geom_line(data = ModeldataWT, aes(x = time, y=ProlTreg), colour = "#8c8c8cff", lwd = simLine)+
   theme(panel.background = element_rect(fill = "white", colour = "black", size = 2),
         legend.key = element_rect(fill = "white", colour = "black"),
         legend.background = (element_rect(colour= "black", fill = "white")),
@@ -485,7 +485,7 @@ ProlTregWT = ggplot(ProlWTData, aes(x=hours, y=X4TregProlCT)) + geom_point(size 
         axis.ticks.length=unit(.25, "cm"),
         text = element_text(size=20))+
   labs(titles = "Proliferating Tregs", x = "Age in days", y = "Cell Counts")+
-  scale_y_continuous(limits = c(0,1050000), breaks = c(0, 2.5e+05, 5e+05, 7.5e+05, 1e+06), labels = c(0,2.5,"5.0",7.5,10))
+  scale_y_continuous(limits = c(0,1050000), breaks = c(0, 2e+05, 4e+05, 6e+05, 8e+05, 1e+06), labels = c(0,2,5,6,8,10))
 
 
 
@@ -506,10 +506,9 @@ theme(panel.background = element_rect(fill = "white", colour = "black", size = 2
       axis.ticks.length=unit(.25, "cm"),
       text = element_text(size=20))+
 labs(titles = "Total Treg Counts", x = "Age in days", y = "Cell Counts")+
-scale_y_continuous(limits = c(0,1050000), breaks = c(0, 2.5e+05, 5e+05, 7.5e+05, 1e+06), labels = c(0,2.5,"5.0",7.5,10))
+scale_y_continuous(limits = c(0,1050000), breaks = c(0, 2e+05, 4e+05, 6e+05, 8e+05, 1e+06), labels = c(0,2,5,6,8,10))
 
 # Thymic Tregs
-
 ThymicTregKO = ggplot(KOData, aes(x=hours, y=ThymicDerivedTregsCT)) + geom_point(size = dotsize) +
   stat_summary(fun=mean, colour="black", geom="line", linetype="dotted", lwd = Dotedline)+
   geom_line(data = ModeldataKO, aes(x = time, y=ThyTregs), colour = "black", lwd = simLine)+
@@ -522,7 +521,7 @@ ThymicTregKO = ggplot(KOData, aes(x=hours, y=ThymicDerivedTregsCT)) + geom_point
         axis.ticks.length=unit(.25, "cm"),
         text = element_text(size=20))+
   labs(titles = "Thymic Derived Tregs", x = "Age in days", y = "Cell Counts")+
-  scale_y_continuous(limits = c(0,1050000), breaks = c(0, 2.5e+05, 5e+05, 7.5e+05, 1e+06), labels = c(0,2.5,"5.0",7.5,10))
+  scale_y_continuous(limits = c(0,1050000), breaks = c(0, 2e+05, 4e+05, 6e+05, 8e+05, 1e+06), labels = c(0,2,5,6,8,10))
 
 #Naive Derived Tregs
 NaiveTregKO = ggplot(KOData, aes(x=hours, y=NaiveDerivedTregsCT)) + geom_point(size = dotsize) +
@@ -537,7 +536,7 @@ NaiveTregKO = ggplot(KOData, aes(x=hours, y=NaiveDerivedTregsCT)) + geom_point(s
         axis.ticks.length=unit(.25, "cm"),
         text = element_text(size=20))+
   labs(titles = "Peripherally Derived Tregs", x = "Age in days", y = "Cell Counts")+
-  scale_y_continuous(limits = c(0,1050000), breaks = c(0, 2.5e+05, 5e+05, 7.5e+05, 1e+06), labels = c(0,2.5,"5.0",7.5,10))
+  scale_y_continuous(limits = c(0,1050000), breaks = c(0, 2e+05, 4e+05, 6e+05, 8e+05, 1e+06), labels = c(0,2,5,6,8,10))
 
 #Proliferating Tregs
 ProlTregKO = ggplot(ProlKOData, aes(x=hours, y=X4TregProlCT)) + geom_point(size = dotsize) +
@@ -552,33 +551,7 @@ ProlTregKO = ggplot(ProlKOData, aes(x=hours, y=X4TregProlCT)) + geom_point(size 
         axis.ticks.length=unit(.25, "cm"),
         text = element_text(size=20))+
   labs(titles = "Proliferating Tregs", x = "Age in days", y = "Cell Counts")+
-  scale_y_continuous(limits = c(0,1050000), breaks = c(0, 2.5e+05, 5e+05, 7.5e+05, 1e+06), labels = c(0,2.5,"5.0",7.5,10))
-
-
-
-#--------------------------------------------------------#
-
-#--------------- Break plot Piece
-
-ProlTregKO_Break = ggplot(ProlKOData, aes(x=hours, y=X4TregProlCT)) + geom_point(size = dotsize) +
-  stat_summary(fun=mean, colour="black", geom="line", linetype="dotted", lwd = Dotedline)+
-  geom_line(data = ModeldataKO, aes(x = time, y=ProlTreg), colour = "black", lwd = simLine)+
-  theme(panel.background = element_rect(fill = "white", colour = "black", size = 2),
-        legend.key = element_rect(fill = "white", colour = "black"),
-        legend.background = (element_rect(colour= "black", fill = "white")),
-        axis.title.x = element_text( colour="black", size=20),
-        axis.title.y = element_text( colour = "black", size = 20),
-        plot.title = element_text(lineheight=.8,  size = 20),
-        axis.ticks.length=unit(.25, "cm"),
-        text = element_text(size=20))+
-  labs(titles = "Proliferating Tregs", x = "Age in days", y = "Cell Counts")+
-  scale_y_continuous(limits = c(0,850000))+
-  scale_y_break(c(400000, 800000))
-
-#--------------------------------------------------------#
-
-
-
+  scale_y_continuous(limits = c(0,1050000), breaks = c(0, 2e+05, 4e+05, 6e+05, 8e+05, 1e+06), labels = c(0,2,5,6,8,10))
 
 
 
@@ -634,9 +607,236 @@ ggsave(file = "../../Plots/Figure3/Figure3C.pdf", TregPlots,
        height = ht,
        width = 19.8)
 
-#the broken KO plot
+#---------------------- Figure Parameters -------------------------------------
+
+# Define sizes
+dotsize_mm_KO   <- 1.75
+dotsize_mm_WT   <- 2.06
+linewidth_pt    <- 0.655
+width_fig       <- 31.39
+height_fig      <- 25.29
+
+# As minimal as possible theme
+small_theme_clean <- theme_minimal(base_size = 6) +
+  theme(
+    axis.title.x = element_blank(),                   # No x-axis title
+    axis.title.y = element_blank(),                   # No y-axis title
+    axis.text.x  = element_blank(),                   # No x-axis numbers
+    axis.text.y  = element_blank(),                   # No y-axis numbers
+    axis.ticks.x = element_line(linewidth = 0.3),     # Keep x-axis ticks
+    axis.ticks.y = element_line(linewidth = 0.3),     # Keep y-axis ticks
+    axis.line    = element_blank(),                   # No axis lines beyond ticks
+    panel.grid   = element_blank(),                   # No grid lines
+    panel.background = element_blank(),
+    plot.background  = element_blank(),               # No white background
+    panel.background = element_rect(
+      fill = "white", color = "black", linewidth = 0.4  # Border box
+    ),
+    plot.background = element_rect(fill = "white", color = NA),
+    plot.title = element_blank(),                     # No title
+    plot.margin = margin(0, 0, 0, 0, "mm")
+  )
+
+# summarizing
+stat_summary_KO <- stat_summary(
+  fun       = mean,
+  colour    = "black",
+  geom      = "line",
+  linetype  = "dotted",
+  size      = linewidth_pt
+)
+
+stat_summary_WT <- stat_summary(
+  fun=mean, 
+  colour = "#8c8c8cff", 
+  geom="line", 
+  linetype="dotted", 
+  lwd = linewidth_pt)
+
+# Geom Points
+geom_point_WT <- geom_point(shape = 17, size = dotsize_mm_WT, colour = "#8c8c8cff")
+geom_point_KO <- geom_point(size = dotsize_mm_KO)
+
+# Y axis scale
+scale_y_Treg <- scale_y_continuous(
+  limits = c(0, 1050000),
+  breaks = c(0, 2e5, 4e5, 6e5, 8e5, 1e6),
+  labels = c(0, 2, 5, 6, 8, 10)
+)
+
+#------------------------Figures 3C WT--------------------------------------
+# Total Tregs
+TregCTWT = ggplot(WTData, aes(x=hours, y=X4TregCT)) + 
+  geom_line(data = ModeldataWT, aes(x = time, y=TregCT), colour = "#8c8c8cff", lwd = linewidth_pt)+
+  geom_point_WT +
+  stat_summary_WT +
+  small_theme_clean +
+  scale_y_Treg
+
+ggsave(
+  filename = "../../Plots/Figure3/Fig3C/WT/TregCTWT.pdf",
+  plot     = TregCTWT,
+  width    =  width_fig,  # mm
+  height   =  height_fig,  # mm
+  units    = "mm",
+  dpi      = 300
+)
+
+# Thymic Tregs
+
+ThymicTregWT = ggplot(WTData, aes(x=hours, y=ThymicDerivedTregsCT)) + 
+  geom_line(data = ModeldataWT, 
+            aes(x = time, y=ThyTregs), 
+            colour = "#8c8c8cff", 
+            lwd = linewidth_pt)+
+  geom_point_WT +
+  stat_summary_WT +
+  small_theme_clean +
+  scale_y_Treg
+
+ggsave(
+  filename = "../../Plots/Figure3/Fig3C/WT/ThymicTregWT.pdf",
+  plot     = ThymicTregWT,
+  width    =  width_fig,  # mm
+  height   =  height_fig,  # mm
+  units    = "mm",
+  dpi      = 300
+)
 
 
-ggsave(file = "../../Plots/Figure3/ProlTregKO_Break.pdf", ProlTregKO_Break,
-       height = ht,
-       width = wdt)
+#Naive Derived Tregs
+NaiveTregWT = ggplot(WTData, aes(x=hours, y=NaiveDerivedTregsCT)) +  
+  geom_line(data = ModeldataWT, 
+            aes(x = time, y=TregNaive), 
+            colour = "#8c8c8cff", 
+            lwd = linewidth_pt)+
+  geom_point_WT +
+  stat_summary_WT +
+  small_theme_clean +
+  scale_y_Treg
+
+ggsave(
+  filename = "../../Plots/Figure3/Fig3C/WT/NaiveTregWT.pdf",
+  plot     = NaiveTregWT,
+  width    =  width_fig,  # mm
+  height   =  height_fig,  # mm
+  units    = "mm",
+  dpi      = 300
+)
+
+
+#Proliferating Tregs
+ProlTregWT = ggplot(ProlWTData, aes(x=hours, y=X4TregProlCT)) + 
+  geom_line(data = ModeldataWT, 
+            aes(x = time, y=ProlTreg), 
+            colour = "#8c8c8cff", 
+            lwd = linewidth_pt)+
+  stat_summary_WT +
+  geom_point_WT +
+  small_theme_clean +
+  scale_y_Treg
+
+ggsave(
+  filename = "../../Plots/Figure3/Fig3C/WT/ProlTregWT.pdf",
+  plot     = ProlTregWT,
+  width    =  width_fig,  # mm
+  height   =  height_fig,  # mm
+  units    = "mm",
+  dpi      = 300
+)
+
+
+
+
+#----------------------- Figures 3C KO---------------------------------------
+#############################################
+# IL-2 KO Tregs
+#############################################
+
+#Total Tregs
+TregCTKO = ggplot(KOData, aes(x=hours, y=X4TregCT)) + 
+  geom_line(data = ModeldataKO, 
+            aes(x = time, y=TregCT), 
+            colour = "black", 
+            lwd = linewidth_pt)+
+  geom_point_KO +
+  stat_summary_KO +
+  small_theme_clean +
+  scale_y_Treg
+
+ggsave(
+  filename = "../../Plots/Figure3/Fig3C/KO/TregCTKO.pdf",
+  plot     = TregCTKO,
+  width    =  width_fig,  # mm
+  height   =  height_fig,  # mm
+  units    = "mm",
+  dpi      = 300
+)
+
+# Thymic Tregs
+ThymicTregKO = ggplot(KOData, aes(x=hours, y=ThymicDerivedTregsCT)) +
+  geom_line(data = ModeldataKO, 
+            aes(x = time, y=ThyTregs), 
+            colour = "black", 
+            lwd = linewidth_pt)+
+  geom_point_KO +
+  stat_summary_KO +
+  small_theme_clean +
+  scale_y_Treg
+
+ggsave(
+  filename = "../../Plots/Figure3/Fig3C/KO/ThymicTregKO.pdf",
+  plot     = ThymicTregKO,
+  width    =  width_fig,  # mm
+  height   =  height_fig,  # mm
+  units    = "mm",
+  dpi      = 300
+)
+
+#Naive Derived Tregs KO
+NaiveTregKO = ggplot(KOData, aes(x=hours, y=NaiveDerivedTregsCT)) + 
+  geom_line(data = ModeldataKO, 
+            aes(x = time, y=TregNaive), 
+            colour = "black", 
+            lwd = linewidth_pt)+
+  geom_point_KO +
+  stat_summary_KO +
+  small_theme_clean +
+  scale_y_Treg
+
+ggsave(
+  filename = "../../Plots/Figure3/Fig3C/KO/NaiveTregKO.pdf",
+  plot     = NaiveTregKO,
+  width    =  width_fig,  # mm
+  height   =  height_fig,  # mm
+  units    = "mm",
+  dpi      = 300
+)
+
+
+# Prol Treg KO
+ProlTregKO <- ggplot(ProlKOData, aes(x = hours, y = X4TregProlCT)) +
+  geom_line(
+    data   = ModeldataKO,
+    aes(x = time, y = ProlTreg),
+    colour = "black",
+    size    = linewidth_pt
+  ) +
+  geom_point_KO +
+  stat_summary_KO +
+  small_theme_clean +
+  scale_y_Treg
+
+
+ggsave(
+  filename = "../../Plots/Figure3/Fig3C/KO/ProlTregKO.pdf",
+  plot     = ProlTregKO,
+  width    =  width_fig,  # mm
+  height   =  height_fig,  # mm
+  units    = "mm",
+  dpi      = 300
+)
+
+
+
+

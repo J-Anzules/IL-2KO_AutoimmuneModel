@@ -65,13 +65,12 @@ ActivatedKOSpleen = read.csv('../../RawData/ActivatedKOSpleen.csv')
 #Reduce all y axis lower limit by 0.0769 of the max value
 # Percentage of CD44+CD62L-CD69+ cells
 
-ActT = read.csv('C:/Laptop Backups/HomestaticExpansionProject/ModelData/TCellActivationSummary_filled.csv')
+ActT = read.csv('../../Data/TCellActivationSummary.csv')
 
 ActT$Genotype[ActT$Genotype == "IL-2-KO"] = "KO"
 ActT$Genotype[ActT$Genotype == "IL-2-HET"] = "WT"
 ActT$Genotype[ActT$Genotype == "CD25-KO"] = "KO"
 
-ActT[ActT$Genotype != "",]
 ActT = ActT[!(ActT$Genotype == ""),]
 ActT = subset(ActT, Age <= 18 & Age > 0)
 

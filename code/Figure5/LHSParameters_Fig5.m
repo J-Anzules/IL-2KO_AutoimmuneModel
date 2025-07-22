@@ -21,7 +21,7 @@ addpath('../core_LHS/')
 % Here are the choices {'mu', 'z', 'g', 'alpha', 'c', 'epsilon', 'b_R', 'beta', 'a', 'b_T', 'e_T', 'e_R', 'kA',...
 %    'j', 'kB', 'n', 'd', 'nK', 'rK', 'Ki', 'Kj', 'dKO', 'koKA', 'koj', 'kob_R'};
 CondKeys = {'kA', 'koKA', 'j', 'koj', 'b_R', 'kob_R'};
-SampleSize = 3;%3000;
+SampleSize = 100;%3000;
 PctChange = 0.6; %What percentage should the initial conditions vary?
 EntryNumber = 563;
 PlotType = "Percentile"; % "Percentile" (10 and 90) or "Std" (1 std above and below the mean)
@@ -213,16 +213,20 @@ IterationNumber = 0;
 %Running Simulation
 for iter = 1:SampleSize
     % Setting up the Init Conditions
-    N = 1027;
-    T = 252;
-    R = 128;
-    ThyN = 18;
-    ActN = 252;
-    ThyR = 24;
-    DiffR = 1;
-    Nprol = 1008;
-    Tprol = 0;
-    Rprol = 510;
+    N = 390; %Naive T cells
+    T = 1240; %Activated T Cells
+    R = 163; %T Regulatory Cells (10% of all T cells)
+    
+    ThyN = 45; %Thymic Derived Naive Cells
+    ActN = 1088; % Activated Naive T Cells
+    ThyR = 5; % Thymic Derived Tregs
+    DiffR = 1; %Naive Derived Tregs
+    
+    Nprol = 345; %Self replicating naive T cells
+    Tprol = 557; %Self replicating activated T cells
+    Rprol = 90; %Self replicating Tregs
+
+
     I = 0.0001;
     m = 0.0023; %Too lazy to remove this from every where rn
         
