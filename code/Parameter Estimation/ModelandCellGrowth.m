@@ -2,6 +2,15 @@ close all; clc
 %global tx N T R I ThyR RplR DiffR pOpt p0 m
 global tx WTerror KOerror
 
+%-------------------------------------------------------------------------------------------------------%
+%                                       Environment set up
+% Grabbing file location
+scriptFull = matlab.desktop.editor.getActiveFilename;
+% Grabbing parts of the location
+scriptDir = fileparts(scriptFull);
+%Moving to file location
+cd(scriptDir)
+
 % Parameter Ranges
 %=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=%
 %-------------------- Naive -----------------------%
