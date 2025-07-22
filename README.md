@@ -42,8 +42,8 @@ HomeostaticExpaction
 1. **Code Folder** - Contains the scripts that run the simulation, optimization/minimizing algorithm, and sensitivity analysis. 
 2. **RawData Folder** - Contains the data that my model attempts to replicate. Analyzed and prepared by scripts in the folder "Stats plots and data management"
 3. Main Scripts definition
-        * Figure 1 - R script generating comparison figures of the phenotypic markers between WT and IL-2 KO mice
-        * Figure 3 - Takes the model output data (from parameter set 563) and generates the comparitive figures between model output and experimental data.
+        * **Figure 1** - R script generating comparison figures of the phenotypic markers between WT and IL-2 KO mice
+        * **Figure 3** - Takes the model output data (from parameter set 563) and generates the comparitive figures between model output and experimental data.
         * **ModelandCellGrowth.m** - The main script for minimizing the Rsquare value calculated by comparing the the simulation to the data.
         * **QuickSimulation.m** - Runs a simulation with the chosen parameter set and time frame. Plots are created for each run, if so desired. Individual values for each parameters can be edited to study the dynamics of the model
         * **LHSInitialConditions** - Performs a Latin hypercube sampling of any given population initial conditions and range. The 90th/10th percentile and one standard deviation above and below the mean is calculated. Plots displaying the area that the simulation results take is made for either percentiles or percentages.
