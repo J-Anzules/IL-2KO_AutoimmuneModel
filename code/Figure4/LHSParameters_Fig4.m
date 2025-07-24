@@ -179,22 +179,24 @@ IterationNumber = 0;
 
 %Running Simulation
 for iter = 1:SampleSize
+    
     % Setting up the Init Conditions
-    N = 390; %Naive T cells
-    T = 1240; %Activated T Cells
-    R = 163; %T Regulatory Cells (10% of all T cells)
+    N     = 390.5112;     % Naive T cells
+    T     = 1240.5;       % Activated T cells
+    R     = 163.1011;     % Total Tregs (set to 10% of N + T)
     
-    ThyN = 45; %Thymic Derived Naive Cells
-    ActN = 1088; % Activated Naive T Cells
-    ThyR = 5; % Thymic Derived Tregs
-    DiffR = 1; %Naive Derived Tregs
+    ThyN  = 45.44558;     % Thymic derived naive T cells
+    ActN  = 1088.41;      % Activated naive T cells
     
-    Nprol = 345; %Self replicating naive T cells
-    Tprol = 557; %Self replicating activated T cells
-    Rprol = 90; %Self replicating Tregs
+    ThyR  = 5;            % Thymic derived Tregs (rounded from ~4.5)
+    DiffR = 1;            % Naive derived Tregs (from data)
+    
+    Nprol = 345.0656;     % Proliferating naive T cells
+    Tprol = 557.008;      % Proliferating activated T cells
+    Rprol = 90.2074;      % Proliferating Tregs (set to 10% of Nprol + Tprol)
 
     I = 0.0001;
-    m = 0.0023; %Too lazy to remove this from every where rn
+    m = 0.0023; %Thymic weight day 0
         
     T0 = [N T R ...
     ThyN ActN ThyR DiffR ... 

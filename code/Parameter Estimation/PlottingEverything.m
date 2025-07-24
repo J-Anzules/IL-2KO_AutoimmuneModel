@@ -222,7 +222,7 @@ ModelDataKO.DeactivationBoost = (ModelDataKO.Il2./(Kj + ModelDataKO.Il2));
 
 loc = '../../Plots/PlottingEverything_out/';
 
-plt1 = append(loc, '3_', 'HillsComarison.png');
+plt1 = append(loc, '3_', 'HillsComparison.png');
 plt2 = append(loc, '4_', 'Comparison.png');
 plt3 = append(loc, '5_', "NaiveBalance.png");
 plt4 = append(loc, '6_', 'TregBalance.png');

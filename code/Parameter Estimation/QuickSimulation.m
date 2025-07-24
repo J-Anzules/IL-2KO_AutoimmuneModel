@@ -16,8 +16,8 @@ addpath('../core_LHS/')
 %                                       Main Script
 
 
-FileName = '../../Data/ParameterSearch_final.csv';
-EntryNumber = 563;
+FileName = '../../Data/ParameterSearch_opnall.csv';
+EntryNumber = 1;
 p = GetParameters(EntryNumber, FileName);
 
 mu=         p(1);%Thymic Naive
