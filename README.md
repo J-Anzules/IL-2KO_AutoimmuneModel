@@ -13,30 +13,44 @@ The QuickSimulation.m script is the easiest bit of code to go in and start explo
 #### Below is a file tree of the most important parts of my project:
 
 
-<!-- ```
-HomeostaticExpaction
-|...Modeling
-|    |...Matlab
-|    |    |...CodesFrom_Khailaie2013
-|    |    |...Matlab
-|    |        |...RawData
-|    |        |...Residuals
-|    |        |...Examples
-|    |        |...Plots
-|    |        |...WorkingScript
-|    |            |...ModelandCellGrowth.m
-|    |            |...QuickSimulation.m
-|    |            |...LHSInitialConditions.m
-|    |            |...LHSParameters.m
-|    |        |...Data
-|    |...Python (Python Version, WIP by Pheobe Adamyan)
-|
-|...Stats plots and data management
-    |...popCount_V2.R
-    |...CalculatingActivatedTCellsFromCD44.py
-    |...poCount_V2_AfterPythonScript.R
-    |...StatsForPopCount_V2Results.Rmd
-``` -->
+```bash
+.
+├── Data
+│   ├── ModelOutputEverythingKO.csv
+│   ├── ModelOutputEverythingWT.csv
+│   ├── ModelOutputKO.csv
+│   ├── ModelOutputWT.csv
+│   ├── ObjectiveDataKO.csv
+│   ├── ObjectiveDataWT.csv
+│   ├── ParameterSearch_final.csv
+│   ├── ParameterSearch_opnall5.csv
+│   └── TCellActivationSummary.csv
+├── Images
+│   └── ModelDiagram.png
+├── Plots
+│   ├── 1_WT_1_pops.png
+│   ├── 2_KO_1_pops.png
+│   ├── Figure1.pdf
+│   ├── Figure3
+│   ├── Figure4
+│   ├── Figure5
+│   └── PlottingEverything_out
+├── README.md
+├── RawData
+│   ├── ActivatedKOSpleen.csv
+│   ├── ActivatedWTSpleen.csv
+│   ├── KOProl.csv
+│   ├── WTProl.csv
+│   └── color.pdf
+└── code
+    ├── Figure1
+    ├── Figure3
+    ├── Figure4
+    ├── Figure5
+    ├── Parameter Estimation
+    └── core_LHS
+```
+
 
 ## Defining Folders and Scripts
 1. **Code Folder** - Contains the scripts that run the simulation, optimization/minimizing algorithm, and sensitivity analysis. 
