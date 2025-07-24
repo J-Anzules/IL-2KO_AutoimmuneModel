@@ -23,7 +23,7 @@ addpath('../core_LHS/')
 CondKeys = {'kA', 'koKA', 'j', 'koj', 'b_R', 'kob_R'};
 SampleSize = 100;%3000;
 PctChange = 0.6; %What percentage should the initial conditions vary?
-EntryNumber = 5;%563;
+EntryNumber = 6;%563;
 PlotType = "Percentile"; % "Percentile" (10 and 90) or "Std" (1 std above and below the mean)
 tx = 1:600; %Model is set up for per hour
 
