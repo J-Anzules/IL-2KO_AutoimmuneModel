@@ -15,6 +15,13 @@ The QuickSimulation.m script is the easiest bit of code to go in and start explo
 
 ```bash
 .
+└── code
+    ├── Figure1
+    ├── Figure3
+    ├── Figure4
+    ├── Figure5
+    ├── Parameter Estimation
+    └── core_LHS
 ├── Data
 │   ├── ModelOutputEverythingKO.csv
 │   ├── ModelOutputEverythingWT.csv
@@ -25,8 +32,6 @@ The QuickSimulation.m script is the easiest bit of code to go in and start explo
 │   ├── ParameterSearch_final.csv
 │   ├── ParameterSearch_opnall5.csv
 │   └── TCellActivationSummary.csv
-├── Images
-│   └── ModelDiagram.png
 ├── Plots
 │   ├── 1_WT_1_pops.png
 │   ├── 2_KO_1_pops.png
@@ -42,13 +47,7 @@ The QuickSimulation.m script is the easiest bit of code to go in and start explo
 │   ├── KOProl.csv
 │   ├── WTProl.csv
 │   └── color.pdf
-└── code
-    ├── Figure1
-    ├── Figure3
-    ├── Figure4
-    ├── Figure5
-    ├── Parameter Estimation
-    └── core_LHS
+
 ```
 
 

@@ -16,7 +16,7 @@ addpath('../core_LHS/')
 % Here are the choices {'mu', 'z', 'g', 'alpha', 'c', 'epsilon', 'b_R', 'beta', 'a', 'b_T', 'e_T', 'e_R', 'kA',...
 %    'j', 'kB', 'n', 'd', 'nK', 'rK', 'Ki', 'Kj', 'dKO', 'koKA', 'koj'};
 CondKeys = {'b_R', 'd', 'dKO', 'kB', 'epsilon'};
-SampleSize = 100;%3000;
+SampleSize = 100;
 PctChange = 0.6; %What percentage should the initial conditions vary?
 EntryNumber = 563;
 PlotType = "Percentile"; % "Percentile" (10 and 90) or "Std" (1 std above and below the mean)

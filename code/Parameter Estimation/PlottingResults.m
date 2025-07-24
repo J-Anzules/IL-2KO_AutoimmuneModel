@@ -34,7 +34,7 @@ ProlData = ProlData(:,{ 'NaiveProlCT', 'ActivatedProlCT', 'X4TregProlCT', ...
     'hours'});
 
 %Setting file names
-loc = '../../Plots/';
+loc = '../../Plots/PlottingEverything_out/';
 
 plt =  append (loc, Order, Gntype, '_1_pops.png');
 

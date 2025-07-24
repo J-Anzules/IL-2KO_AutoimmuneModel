@@ -343,6 +343,7 @@ uitable('Units','normalized',...
                  'ColumnWidth', {150 200 360});
              
  saveas(PLT1, sprintf(plt1))
+ % exportapp(PLT1, sprintf(plt1))
 
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=%
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=%
@@ -777,8 +778,6 @@ saveas(PLT6, sprintf(plt6))
 
 writetable(ModelDataKO, '../../Data/ModelOutputEverythingKO.csv')
 writetable(ModelDataWT, '../../Data/ModelOutputEverythingWT.csv')
-% writetable(ModelDataKO, '../../../../../../Stats plots and data management/ModelOutputEverythingKO.csv')
-% writetable(ModelDataWT, '../../../../../../Stats plots and data management/ModelOutputEverythingWT.csv')
 end
 
 

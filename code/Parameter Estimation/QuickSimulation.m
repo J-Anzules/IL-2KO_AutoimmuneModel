@@ -1,6 +1,21 @@
 close all; clc
 global tx
 
+%-------------------------------------------------------------------------------------------------------%
+%                                       Environment set up
+% Grabbing file location
+scriptFull = matlab.desktop.editor.getActiveFilename;
+% Grabbing parts of the location
+scriptDir = fileparts(scriptFull);
+%Moving to file location
+cd(scriptDir)
+
+addpath('../core_LHS/')
+
+%-------------------------------------------------------------------------------------------------------%
+%                                       Main Script
+
+
 FileName = '../../Data/ParameterSearch_final.csv';
 EntryNumber = 563;
 p = GetParameters(EntryNumber, FileName);
@@ -28,12 +43,13 @@ Ki =        p(21); %Half rate for activation suppression boost
 Kj =        p(22);% Half rate for deactivation boost
 dKO =       p(23);
 
+% Explore dynamics per parameter, by adjusting values below
 % mu=         p(1);%Thymic Naive
-% z =         0.04;%p(2); %Prol Naive
+% z =         p(2); %Prol Naive
 % g =         p(3); %Naive Death
-% alpha =     0.00039938;%p(4); %Thymic Tregs
-% c =         0.001;%p(5); %Naive Derived Tregs
-% epsilon =   0.008;%p(6); %Treg Prol
+% alpha =     (4); %Thymic Tregs
+% c =         p(5); %Naive Derived Tregs
+% epsilon =   p(6); %Treg Prol
 % b_R =       p(7); %Treg Death
 % beta =      p(8); %Activation Rate
 % a =         p(9); %Activated Prol
@@ -64,9 +80,6 @@ for i = Genotype
 end
 %%
 PlottingEverything(p0)
-
-%%
-Res_Main1(p0, 2)
 
 %%
 global  WTerror KOerror
@@ -102,7 +115,7 @@ GrowthObjective(p0, parameterStruct);
 
 error = WTerror + KOerror;
 %-----Change this for saving files in a different location-----%
-FileLocation = './Data/ParameterSets.csv';
+FileLocation = '../../Data/ParameterSearch_opnall5.csv';
 %---------------------------------------------------------------------------%
 ParameterData = readtable(FileLocation);
 
