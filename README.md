@@ -8,7 +8,7 @@ This project explores the systemic differences between a healthy and autoimmune 
 -------------------------
 
 ## Where to Start
-The QuickSimulation.m script is the easiest bit of code to go in and start exploring the dynamics of the model. Improvements to the accessibility of this script is planned for the future.
+The /code/parameter_estimation/QuickSimulation.m script is the easiest place to start exploring the dynamics of the model.  This script references the file containing  **[TODO: insert total numbers]** parameter sets, identified by our optimization algorithm. Parameter set **[TODO: insert number]** represents our 
 
 #### Below is a file tree of the most important parts of my project:
 
