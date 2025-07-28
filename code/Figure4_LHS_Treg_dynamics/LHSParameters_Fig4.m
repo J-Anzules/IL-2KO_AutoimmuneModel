@@ -16,15 +16,18 @@ addpath('../core_LHS/')
 % Here are the choices {'mu', 'z', 'g', 'alpha', 'c', 'epsilon', 'b_R', 'beta', 'a', 'b_T', 'e_T', 'e_R', 'kA',...
 %    'j', 'kB', 'n', 'd', 'nK', 'rK', 'Ki', 'Kj', 'dKO', 'koKA', 'koj'};
 CondKeys = {'b_R', 'd', 'dKO', 'kB', 'epsilon'};
-SampleSize = 100;
+FileName = '../../Data/ParameterSearch_final.csv';
+SampleSize = 3000;
 PctChange = 0.6; %What percentage should the initial conditions vary?
-EntryNumber = 5;
+EntryNumber = 323;
 PlotType = "Percentile"; % "Percentile" (10 and 90) or "Std" (1 std above and below the mean)
 tx = 1:432;%600;%432; %Model is set up for per hour
+
+
 %--------------------------------------------------------------------------------------------------------%
 
 %Preparing 
-FileName = '../../Data/ParameterSearch_opnall.csv';
+
 p = GetParameters(EntryNumber, FileName);
 
 mu=         p(1);%Thymic Naive

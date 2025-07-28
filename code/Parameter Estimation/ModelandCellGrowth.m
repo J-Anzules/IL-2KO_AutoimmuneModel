@@ -183,7 +183,6 @@ parameterStruct.KnockOut.ProlData = parameterStruct.KnockOut.ProlData(:,{ 'Naive
     'hours'});
 
 % For testing
-% TODO: remove when done.
 % options = optimoptions('fmincon', ...
 %     'MaxIterations', 1, ...
 %     'MaxFunctionEvaluations', 10, ...
@@ -191,9 +190,6 @@ parameterStruct.KnockOut.ProlData = parameterStruct.KnockOut.ProlData(:,{ 'Naive
 %     'StepTolerance', 1e-6, ...
 %     'Display', 'iter');
 
-% options = optimoptions('fmincon', ...
-%     'MaxIterations', 700, ...
-%     'Display', 'iter');
 
 % optimize parameters
 disp('Beginning Optimization...')
@@ -232,10 +228,8 @@ Ki = pOptimized(20);
 Kj = pOptimized(21);
 dKO = pOptimized(22);
 
-%If I like the result, I save it.
-
 %-----Change this for saving files in a different location-----%
-FileLocation = '../../Data/ParameterSearch_opnall.csv';
+FileLocation = '../../Data/ParameterSearch_optimizing.csv';
 %---------------------------------------------------------------------------%
 ParameterData = readtable(FileLocation);
 
@@ -244,7 +238,8 @@ if isempty(ParameterData.EntryNumber)
 else
     EntryNumber = max(ParameterData.EntryNumber)+1;
 end
-%d = 1000; %IL-2 production Rate
+
+
 f = 1.38629; %IL-2 degradation Rate
 parameters = [mu, z, g, alpha, c, epsilon, b_R, beta, a, b_T,...
     e_T, e_R, kA, j, kB, n, d, f, nK, rK, Ki, Kj, dKO, error, WTerror, KOerror, EntryNumber];

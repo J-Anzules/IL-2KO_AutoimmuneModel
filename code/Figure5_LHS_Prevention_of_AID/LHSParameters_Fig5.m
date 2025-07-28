@@ -20,10 +20,11 @@ addpath('../core_LHS/')
 %                                       Only make changes here
 % Here are the choices {'mu', 'z', 'g', 'alpha', 'c', 'epsilon', 'b_R', 'beta', 'a', 'b_T', 'e_T', 'e_R', 'kA',...
 %    'j', 'kB', 'n', 'd', 'nK', 'rK', 'Ki', 'Kj', 'dKO', 'koKA', 'koj', 'kob_R'};
-CondKeys = {'kA', 'koKA', 'j', 'koj', 'b_R', 'kob_R'};
-SampleSize = 50;%3000;
+CondKeys = {'kA', 'koKA', 'j', 'koj'};%, 'b_R', 'kob_R'};
+SampleSize = 3000;
 PctChange = 0.6; %What percentage should the initial conditions vary?
-EntryNumber = 66;
+FileName = '../../Data/ParameterSearch_final.csv';
+EntryNumber = 323;
 PlotType = "Percentile"; % "Percentile" (10 and 90) or "Std" (1 std above and below the mean)
 tx = 1:600; %Model is set up for per hour
 
@@ -38,8 +39,6 @@ fig_plot = "C";
 %--------------------------------------------------------------------------------------------------------%
 
 %Preparing 
-% FileName = '../../Data/ParameterSearch_final.csv';
-FileName = '../../Data/ParameterSearch_opnall.csv';
 p = GetParameters(EntryNumber, FileName);
 
 mu=         p(1);%Thymic Naive
@@ -377,6 +376,39 @@ DataForRates.I(:,:,2) = IKO;
 
 %------------ All Statistical calculations from the model are done here------------------%
 StatsOfCells = CalculateTheFillRanges(CellularData, tx);
+
+% ——— compute the maximum of the mean of pop 5 ———
+statMean = 1;     % index for “mean”
+pop5     = 5;     % “Naive-Derived Activated T Cells”
+
+% WT (genotype 1)
+[maxMeanWT, idxWT] = max( StatsOfCells(:, statMean, pop5, 1) );
+timeAtMaxWT        = tx(idxWT);
+
+% KO (genotype 2)
+[maxMeanKO, idxKO] = max( StatsOfCells(:, statMean, pop5, 2) );
+timeAtMaxKO        = tx(idxKO);
+
+fprintf('Peak mean of Naive-Derived Activated T Cells:\n');
+fprintf('  WT = %.2f cells at hour %d\n', maxMeanWT,  timeAtMaxWT);
+fprintf('  KO = %.2f cells at hour %d\n', maxMeanKO,  timeAtMaxKO);
+
+
+% Assuming tx = 1:432 so row 432 corresponds to hour 432
+sel_hr    = 432;
+row       = find(tx == sel_hr);   % or just row = 432 if tx = 1:432
+
+statMean  = 1;   % statistic #1 = mean
+popAct    = 2;   % population #2 = Total Activated T Cells
+
+meanWT = StatsOfCells(row, statMean, popAct, 1);
+meanKO = StatsOfCells(row, statMean, popAct, 2);
+
+fprintf('Mean Activated T cells at hour %d:\n', sel_hr);
+fprintf('  WT = %.2f\n', meanWT);
+fprintf('  KO = %.2f\n', meanKO);
+
+% ————————————————————————————————————————————————————
 
 %------------ Rates calculated and stats for those rates------------------%
 ModelRates = CalculatingRatesFromLHSSampling(DataForRates, SampleSize, p, tx);
