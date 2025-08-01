@@ -8,7 +8,7 @@ This project explores the systemic differences between a healthy and autoimmune 
 -------------------------
 
 ## Where to Start
-The /code/parameter_estimation/QuickSimulation.m script is the easiest place to start exploring the dynamics of the model.  This script references the file containing  **[TODO: insert total numbers]** parameter sets, identified by our optimization algorithm. Parameter set **[TODO: insert number]** represents our 
+The /code/parameter_estimation/QuickSimulation.m script is the easiest place to start exploring the dynamics of the model.  This script references the file containing  **[TODO: insert total numbers]** parameter sets, identified by our optimization algorithm. Parameter set **[TODO: insert number]** represents our. _Describe the multiple sections and should be ran in the matlab GUI to take advantage of the different sections._ 
 
 #### Below is a file tree of the most important parts of my project:
 
@@ -68,3 +68,40 @@ The /code/parameter_estimation/QuickSimulation.m script is the easiest place to 
     * **ParametersSets.csv** - Collection of parameters the display the most interesting dynamics seen in the model and progression towards the best fit of the model to data.
 
 
+## Defining Folders and Scripts
+
+<details>
+<summary><strong>1. Code Folder</strong></summary>
+
+Contains the scripts that run the simulation, optimization/minimizing algorithm, and sensitivity analysis.
+
+</details>
+
+<details>
+<summary><strong>2. RawData Folder</strong></summary>
+
+Contains the data that the model attempts to replicate. Analyzed and prepared by scripts in the folder "Stats plots and data management".
+
+</details>
+
+<details>
+<summary><strong>3. Main Scripts Definition</strong></summary>
+
+- **Figure 1** – R script generating comparison figures of phenotypic markers between WT and IL-2 KO mice  
+- **Figure 3** – Generates comparative figures between model output (e.g. parameter set 563) and experimental data  
+- **ModelandCellGrowth.m** – Minimizes the R² value between simulation and data  
+- **QuickSimulation.m** – Runs simulation with chosen parameter set and time frame. Plots included.  
+- **LHSInitialConditions** – Latin hypercube sampling over population initial conditions  
+- **LHSParameters_Fig4** – LHS focused on Treg death rate or suppression; controlled by setting `fig_plot = "A"`, `"B"`, or `"C"` on line 36  
+
+</details>
+
+<details>
+<summary><strong>4. Data</strong></summary>
+
+Contains data related to model optimization, interesting parameter sets, and validation notes.
+
+- **ObjectiveDataKO.csv**, **ObjectiveDataWT.csv** – Used to calculate objective for `fmincon()`
+- **ParametersSets.csv** – Contains parameter sets showing dynamics approaching optimal fit
+
+</details>

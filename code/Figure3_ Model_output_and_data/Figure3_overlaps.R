@@ -1,87 +1,150 @@
+#====================================================================
+# LIBRARIES + DATA
+#====================================================================
 
-#Total Naive Overlap
+library(ggplot2)
+
+ModeldataWT = read.csv("../../Data/ModelOutputWT.csv")
+ModeldataKO = read.csv("../../Data/ModelOutputKO.csv")
+colnames(ModeldataWT) = c("NaiveCT", "ActTCT", "TregCT", "ThyNaive", "ActTNaive", "ThyTregs",
+                          "TregNaive", "ProlNaive", "ProlActT", "ProlTreg", "IL-2", "ThymWeigth")
+colnames(ModeldataKO) = c("NaiveCT", "ActTCT", "TregCT", "ThyNaive", "ActTNaive", "ThyTregs",
+                          "TregNaive", "ProlNaive", "ProlActT", "ProlTreg", "IL-2", "ThymWeigth")
+
+ModeldataWT$time = 0:431
+ModeldataKO$time = 0:431
+ModeldataWT$time = ModeldataWT$time / 24
+ModeldataKO$time = ModeldataKO$time / 24
+
+
+
+#====================================================================
+# PARAMTERS
+#====================================================================
+simLine = 0.655 
+
+small_theme_clean <- theme_minimal(base_size = 6) +
+  theme(
+    axis.title    = element_blank(),
+    axis.text     = element_blank(),
+    axis.ticks.x  = element_line(linewidth = 0.3),
+    axis.ticks.y  = element_line(linewidth = 0.3),
+    panel.grid    = element_blank(),
+    panel.background = element_rect(fill="white", color="black", linewidth=0.4),
+    plot.background  = element_blank(),
+    plot.margin      = margin(0,0,0,0,"mm")
+  )
+
+scale_y_NaiveOverlapCT  <- scale_y_continuous(
+  limits = c(0,1050000),
+  breaks = c(0,1e6,0.75e6,0.50e6,0.25e6, 0),
+  labels = c(0,1.00,0.75,0.50,0.25, 0)
+)
+# max(ModeldataKO$ActTNaive)
+scale_y_ActToverlap  <- scale_y_continuous(
+  limits = c(0,2250000),
+  breaks = c(0,2e6,1.5e6,1e6,0.5e6, 0),
+  labels = c(0,2.0,1.5,1.0,0.5, 0)
+)
+
+# Plot size (mm)
+width_fig  <- 35.58
+height_fig <- 29.95
+
+
+
+# # width: 
+# 31.39 * (1 + (3.85 / 30.86))
+# 
+# # height: 
+# 25.29 * (1 + (4.39 /24.76))
+
+#====================================================================
+# Plots
+#====================================================================
+# Total Naive
 TotalNaiveOverlap = ggplot(data=ModeldataWT, aes(x=time, y=NaiveCT)) +
-  geom_line(lwd = simLine)+
-  geom_line(data = ModeldataKO, aes(x = time, y=NaiveCT), linetype = "dashed", colour = "black", lwd = simLine)+
-  theme(panel.background = element_rect(fill = "white", colour = "black", size = 2),
-        legend.key = element_rect(fill = "white", colour = "black"),
-        legend.background = (element_rect(colour= "black", fill = "white")),
-        axis.title.x = element_text( colour="black", size=20),
-        axis.title.y = element_text( colour = "black", size = 20),
-        plot.title = element_text(lineheight=.8,  size = 20),
-        axis.ticks.length=unit(.25, "cm"),
-        text = element_text(size=20))+
-  labs(titles = "Total Naive T cells Comparison ", x = "Age in days", y = "Cell Counts")
-# scale_y_continuous(limits = c(0,1500000))
-
-YlabelTregOverlap = expression(Cell~Counts~(10^5))
-TotalTregOverlap =
-ggplot(data=ModeldataWT, aes(x=time, y=TregCT)) +
-  geom_line(lwd = 1.5)+
-  geom_line(data = ModeldataKO, aes(x = time, y=TregCT), linetype = "dashed", colour = "black", lwd = 1.5)+
-  theme(panel.background = element_rect(fill = "white", colour = "black", size = 2),
-        legend.key = element_rect(fill = "white", colour = "black"),
-        legend.background = (element_rect(colour= "black", fill = "white")),
-        axis.title.x = element_text( colour="black", size=20),
-        axis.title.y = element_text( colour = "black", size = 20),
-        plot.title = element_text(lineheight=.8,  size = 20),
-        axis.ticks.length=unit(.25, "cm"),
-        text = element_text(size=20),
-        panel.border = element_rect(color = "black",
-                                    fill = "NA",
-                                    size = 2))+
-  labs(titles = "Total Treg Comparison ", x = "Age in days", y = YlabelTregOverlap)+
-  scale_y_continuous(limits = c(0,300000), breaks = c(0, 100000, 200000, 300000), label = c(0,1,2,3))
+  geom_line(lwd = simLine, colour="#8c8c8cff")+
+  geom_line(data = ModeldataKO, aes(x = time, y=NaiveCT),colour="black", lwd = simLine)+
+  small_theme_clean +
+  scale_y_NaiveOverlapCT
 
 
-YlabelTregOverlap = expression(Cell~Counts~(10^5))
-TotalTregOverlap =
-ggplot(data=ModeldataWT, aes(x=time, y=ProlTreg)) +
-  geom_line(lwd = 1.5)+
-  geom_line(data = ModeldataKO, aes(x = time, y=ProlTreg), linetype = "dashed", colour = "black", lwd = 1.5)+
-  theme(panel.background = element_rect(fill = "white", colour = "black", size = 2),
-        legend.key = element_rect(fill = "white", colour = "black"),
-        legend.background = (element_rect(colour= "black", fill = "white")),
-        axis.title.x = element_text( colour="black", size=20),
-        axis.title.y = element_text( colour = "black", size = 20),
-        plot.title = element_text(lineheight=.8,  size = 20),
-        axis.ticks.length=unit(.25, "cm"), 
-        text = element_text(size=20),
-        panel.border = element_rect(color = "black",
-                                    fill = "NA",
-                                    size = 2))+
-  labs(titles = "Proliferating Treg Comparison ", x = "Age in days", y = YlabelTregOverlap)+
-  scale_y_continuous(limits = c(0,150000), breaks = c(0,50000, 100000, 150000), label = c(0,0.5,1,1.5))
-
-max(ModeldataWT$ProlTreg)
-
-ggsave(file = "../../Plots/Figure3/TotalNaive.pdf", TotalNaiveOverlap)
-# height = 4,
-# width = 4)
-
-
-#Overlap of the model lines
-
+# naive derived actT
 NaiveActTOverlap = ggplot(data=ModeldataWT, aes(x=time, y=ActTNaive)) +
-  geom_line(lwd = 1.5)+
-  geom_line(data = ModeldataKO, aes(x = time, y=ActTNaive), linetype = "dashed", colour = "black", lwd = 2)+
-  theme(panel.background = element_rect(fill = "white", colour = "black", size = 2),
-        legend.key = element_rect(fill = "white", colour = "black"),
-        legend.background = (element_rect(colour= "black", fill = "white")),
-        axis.title.x = element_text( colour="black", size=20),
-        axis.title.y = element_text( colour = "black", size = 20),
-        plot.title = element_text(lineheight=.8,  size = 20),
-        axis.ticks.length=unit(.25, "cm"),
-        text = element_text(size=20))+
-  labs(titles = "Naive Derived Activated T cells ", x = "Age in days", y = "Cell Counts")+
-  scale_y_continuous(limits = c(0,2200000))
+  geom_line(lwd = simLine, colour="#8c8c8cff")+
+  geom_line(data = ModeldataKO, aes(x = time, y=ActTNaive), colour = "black", lwd = simLine)+
+  small_theme_clean +
+  scale_y_ActToverlap
 
 
-ggsave(file = "../../Plots/Figure3/TotalNaive.pdf", TotalNaiveOverlap,
-       height = 8.3,
-       width = 10)
+
+#====================================================================
+# Saving
+#====================================================================
+# Total naive
+ggsave(file = "../../Plots/Figure3/IndividualPlots/ModelComparisons/TotalNaiveOverlap.pdf", TotalNaiveOverlap,
+       units="mm", dpi=300,
+       height = height_fig,
+       width = width_fig)
 
 #Simulation comparison
-ggsave(file = "../../Plots/Figure3/Overlap.pdf", NaiveActTOverlap,
-       height = 8.3,
-       width = 10)
+ggsave(file = "../../Plots/Figure3/IndividualPlots/ModelComparisons/NaiveActTOverlap.pdf", NaiveActTOverlap,
+       units="mm", dpi=300,
+       height = height_fig,
+       width = width_fig)
+
+
+#====================================================================
+# OLD
+#====================================================================
+# 
+# #Total Naive Overlap
+# TotalNaiveOverlap = ggplot(data=ModeldataWT, aes(x=time, y=NaiveCT)) +
+#   geom_line(lwd = simLine)+
+#   geom_line(data = ModeldataKO, aes(x = time, y=NaiveCT), linetype = "dashed", colour = "black", lwd = simLine)+
+#   theme(panel.background = element_rect(fill = "white", colour = "black", size = 2),
+#         legend.key = element_rect(fill = "white", colour = "black"),
+#         legend.background = (element_rect(colour= "black", fill = "white")),
+#         axis.title.x = element_text( colour="black", size=20),
+#         axis.title.y = element_text( colour = "black", size = 20),
+#         plot.title = element_text(lineheight=.8,  size = 20),
+#         axis.ticks.length=unit(.25, "cm"),
+#         text = element_text(size=20))+
+#   labs(titles = "Total Naive T cells Comparison ", x = "Age in days", y = "Cell Counts") + 
+#   scale_y_continuous()
+# max(ModeldataWT$NaiveCT)
+# # scale_y_continuous(limits = c(0,1500000))
+# 
+# ggsave(file = "../../Plots/Figure3/TotalNaive.pdf", TotalNaiveOverlap)
+# # height = 4,
+# # width = 4)
+# 
+# 
+# #Overlap of the model lines
+# 
+# NaiveActTOverlap = ggplot(data=ModeldataWT, aes(x=time, y=ActTNaive)) +
+#   geom_line(lwd = 1.5)+
+#   geom_line(data = ModeldataKO, aes(x = time, y=ActTNaive), linetype = "dashed", colour = "black", lwd = 2)+
+#   theme(panel.background = element_rect(fill = "white", colour = "black", size = 2),
+#         legend.key = element_rect(fill = "white", colour = "black"),
+#         legend.background = (element_rect(colour= "black", fill = "white")),
+#         axis.title.x = element_text( colour="black", size=20),
+#         axis.title.y = element_text( colour = "black", size = 20),
+#         plot.title = element_text(lineheight=.8,  size = 20),
+#         axis.ticks.length=unit(.25, "cm"),
+#         text = element_text(size=20))+
+#   labs(titles = "Naive Derived Activated T cells ", x = "Age in days", y = "Cell Counts")
+# 
+# # +
+# #   scale_y_continuous(limits = c(0,2200000))
+# 
+# 
+# ggsave(file = "../../Plots/Figure3/IndividualPlots/ModelComparisons/TotalNaive.pdf", TotalNaiveOverlap,
+#        height = 8.3,
+#        width = 10)
+# 
+# #Simulation comparison
+# ggsave(file = "../../Plots/Figure3/NaiveActTOverlap.pdf", NaiveActTOverlap,
+#        height = 8.3,
+#        width = 10)
