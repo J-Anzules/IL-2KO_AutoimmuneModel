@@ -28,7 +28,7 @@ ModeldataWT$time = ModeldataWT$time / 24
 ModeldataKO$time = ModeldataKO$time / 24
 
 #====================================================================
-# 2) COMMON PARAMETERS
+# COMMON PARAMETERS
 #====================================================================
 # Plot size (mm)
 width_fig  <- 31.39
@@ -89,7 +89,7 @@ scale_y_Treg  <- scale_y_continuous(
 base_dir <- "../../Plots/Figure3/IndividualPlots"
 
 #====================================================================
-# 3) NAIVE T-CELL PANELS
+# NAIVE T-CELL PANELS
 #====================================================================
 ## WT
 # -- Total Naive
@@ -185,7 +185,7 @@ ggsave(
 
 
 #====================================================================
-# 4) ACTIVATED T-CELL PANELS (ActT)
+# ACTIVATED T-CELL PANELS (ActT)
 #====================================================================
 ## WT
 # -- Total Activated
@@ -281,7 +281,7 @@ ggsave(
 
 
 #====================================================================
-# 5) REGULATORY T-CELL PANELS (Treg)
+# REGULATORY T-CELL PANELS (Treg)
 #====================================================================
 ## WT
 # -- Total Tregs

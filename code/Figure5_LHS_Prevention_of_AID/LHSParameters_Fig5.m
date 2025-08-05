@@ -34,7 +34,7 @@ tx = 1:600; %Model is set up for per hour
 % "B" = 3x increase of the clearance rate
 % "C" = 83% reduction in the KA paramter
 
-fig_plot = "B";
+fig_plot = "A";
 
 %--------------------------------------------------------------------------------------------------------%
 

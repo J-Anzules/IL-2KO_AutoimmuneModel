@@ -117,7 +117,7 @@ ylabel('Cell Numbers')
 xlabel('Age in Days')
 %legend('WT', 'IL-2 KO', 'WT', 'IL-2 KO')
 xlim([0 5])
-ylim([0 30])
+ylim([0 5])
 hold off
 
 %%%%%%%%
