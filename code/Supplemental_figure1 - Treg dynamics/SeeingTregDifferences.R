@@ -3,6 +3,7 @@ library(MASS)
 library(scales)
 library(ggpubr)
 library(rstudioapi)
+library(scales)
 if (rstudioapi::isAvailable()) {
   script_path <- rstudioapi::getActiveDocumentContext()$path
   setwd(dirname(script_path))
@@ -22,6 +23,7 @@ TitleSize = 30
 tixkSize = 30
 
 
+
 TregLoss = ggplot() +
   geom_line(data=WTevery, aes(x=hour, y=TregLoss), colour = "#8c8c8cff", lwd = lineWT)+
   geom_line(data=KOevery, aes(x = hour, y=TregLoss), colour = "black", lwd = lineKO)+
@@ -34,9 +36,14 @@ TregLoss = ggplot() +
         axis.ticks.length=unit(.25, "cm"),
         text = element_text(size=tixkSize))+
   labs(titles = "Treg death rate", x = "Age in days", y = "Cell Counts (log)")+
-  scale_y_continuous(trans = log2_trans(),
-                     breaks = trans_breaks("log2", function(x) 2^x),
-                     labels = trans_format("log2", math_format(2^.x)))
+  scale_y_continuous(
+    trans  = "log2",
+    breaks = breaks_log(n = 4, base = 2),
+    labels = function(x) {
+      exps <- round(log2(x))            # get the exponent for each break
+      parse(text = paste0("2^", exps))  # build expressions 2^6, 2^8, ...
+    }
+  )
 
 
 
@@ -57,9 +64,14 @@ TregProl = ggplot(data=WTevery, aes(x=hour, y=ProlTregs)) +
         axis.ticks.length=unit(.25, "cm"),
         text = element_text(size=tixkSize))+
   labs(titles = "Proliferating Tregs", x = "Age in days", y = "Cell count (log)")+
-  scale_y_continuous(trans = log2_trans(),
-                     breaks = trans_breaks("log2", function(x) 2^x),
-                     labels = trans_format("log2", math_format(2^.x)))
+  scale_y_continuous(
+    trans  = "log2",
+    breaks = breaks_log(n = 4, base = 2),
+    labels = function(x) {
+      exps <- round(log2(x))            # get the exponent for each break
+      parse(text = paste0("2^", exps))  # build expressions 2^6, 2^8, ...
+    }
+  )
 
 TotalTreg = ggplot() +
   geom_line(data=WTevery, aes(x=hour, y=TregCT), colour = "#8c8c8cff", lwd = lineWT)+
@@ -73,9 +85,14 @@ TotalTreg = ggplot() +
         axis.ticks.length=unit(.25, "cm"),
         text = element_text(size=tixkSize))+
   labs(titles = "Total Tregs", x = "Age in days", y = "Cell Counts (log)")+
-  scale_y_continuous(trans = log2_trans(),
-                     breaks = trans_breaks("log2", function(x) 2^x),
-                     labels = trans_format("log2", math_format(2^.x)))
+  scale_y_continuous(
+    trans  = "log2",
+    breaks = breaks_log(n = 4, base = 2),
+    labels = function(x) {
+      exps <- round(log2(x))            # get the exponent for each break
+      parse(text = paste0("2^", exps))  # build expressions 2^6, 2^8, ...
+    }
+  )
 
 
 TregDys = ggarrange(TotalTreg, TregLoss, TregProl,
@@ -90,4 +107,3 @@ ggsave(file = "../../Plots/SF1/TregDys.pdf",
        TregDys,
        height = 6,
        width = 18)
-
