@@ -34,7 +34,7 @@ tx = 1:600; %Model is set up for per hour
 % "B" = 3x increase of the clearance rate
 % "C" = 83% reduction in the KA paramter
 
-fig_plot = "A";
+fig_plot = "C";
 
 %--------------------------------------------------------------------------------------------------------%
 
@@ -79,7 +79,7 @@ elseif fig_plot == "B"
     kob_R =     p(7);% * 0.9; 
 elseif fig_plot == "C"
     koj =       p(14);% * 3;
-    koKA =      p(13) * 0.17; 
+    koKA =      p(13) * 0.18;% Original value: 0.17; 
     kob_R =     p(7);% * 0.9; 
 end
        
