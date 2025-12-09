@@ -1,5 +1,12 @@
 # Modeling the homeostatic expansion of the immune system in a healthy and autoimmune system
-### Jonathan M. Anzules, Kristen M. Valentine, Genevieve N. Mullins,  Lihong Zhao, Anh L. Diep, Suzanne S. Sindi, Katrina K. Hoyer.
+### Jonathan M. Anzules, Kristen M. Valentine, Genevieve N. Mullins, Anh L. Diep, Lihong Zhao, Suzanne S. Sindi, Katrina K. Hoyer
+--------------------------------------------
+![Alt text](./Images/VisualAbstract.png "Modeling Homeostatic Expansion")
+
+
+Autoimmune diseases arise from dysregulated immune homeostasis driven by failed self-tolerance mechanisms through a complex, multifactoral pathogenesis that is not fully understood. We developed a mathematical framework to simulate the progression of systemic autoimmune disease, calibrated against experimental data from spontaneous autoimmune manifestations in IL-2-deficient BALB/c mice. Our computational model simulates the dynamics of IL-2 signaling within the thymic and splenic CD4 T cell populations, focusing on its role in supporting regulatory T cells that maintain immune tolerance and prevent autoimmune pathology. Through comparative analysis of our simulations, we identified deficient expansion trajectories in naive and regulatory T cells within the autoimmune phenotype compared to wild-type controls. Analysis of the mathematical model demonstrates robustness in early regulatory T cell dysfunction, identifies parameter values that avert autoimmune progression, and clarifies the system-level impact of IL-2 deficiency on CD4 T cell homeostasis. This mathematical model systematically examines the early stages of autoimmune pathogenesis, providing quantitative insights into how early Treg dysfunction, IL-2 insufficiency, and ineffective suppression of naive T cell activation contribute to the progression of autoimmune disease.
+
+------------------------------------
 
 This project explores the systemic differences between a healthy and autoimmune system. We represent the homeostatic dynamics that work properly during healthy development and the cascading failure seen in the IL-2 knock system that leads to autoimmune disease. Below is a diagram of the model:
 
@@ -87,8 +94,6 @@ These scripts implement the full workflow from model specification to figure gen
 <summary><strong>2. RawData Folder</strong></summary>
 
 Contains the experimental data that the model is calibrated to reproduce.  
-These data were analyzed and pre-processed by scripts in the folder  
-<code>Stats plots and data management</code> before being used for fitting and validation.
 </details>
 
 <details>
@@ -111,19 +116,13 @@ Key scripts for generating figures and running the core analyses:
   Optionally generates plots for each run.  
   Individual parameter values can be edited directly in the script to explore how changes affect model dynamics.
 
-- <strong>LHSInitialConditions</strong>  
-  Performs Latin hypercube sampling over user-specified initial conditions and ranges for the cell populations.  
-  For each ensemble, it computes the mean, 10th/90th percentiles, and ±1 standard deviation over time.  
-  Produces plots showing the region occupied by the simulation trajectories, either as percentile bands or percentage-based envelopes.
+- <strong>core_LHS</strong>  
+Core scripts used to run all Latin hypercube sampling (LHS) workflows over user-specified initial conditions and parameter ranges. Each ensemble computes the mean, 10th/90th percentiles, and ±1 standard deviation over time, and generates plots showing the region occupied by the simulation trajectories, either as percentile bands or percentage-based envelopes.
 
-- <strong>LHSParameters</strong>  
-  Performs Latin hypercube sampling over user-selected parameters and parameter ranges.  
-  As with <strong>LHSInitialConditions</strong>, it computes the mean, 10th/90th percentiles, and ±1 standard deviation and visualizes the spread of trajectories.  
-  Currently, no fully generic “free-form” LHS wrapper is included, but the script can be extended to support additional parameters as needed.
 
 - <strong>LHSParameters_Fig4</strong>  
-  Specialized Latin hypercube sampling focused on parameters controlling the Treg death rate.  
-  Computes the mean, 10th/90th percentiles, and ±1 standard deviation and generates plots summarizing how variation in Treg death rate influences model behavior, again using percentile or percentage-based envelopes.
+  Specialized Latin hypercube sampling focused on parameters controlling the Treg mortality rate.  
+  Computes the mean, 10th/90th percentiles, and ±1 standard deviation and generates plots summarizing how variation in Treg mortality rate influences model behavior, again using percentile or percentage-based envelopes.
 
 - <strong>LHSParameters_Fig5</strong>  
   Specialized Latin hypercube sampling focused on Treg-mediated suppression.  
