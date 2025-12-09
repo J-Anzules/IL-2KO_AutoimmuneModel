@@ -1,7 +1,6 @@
 # Modeling the Homeostatic Expansion of the Immune System in Healthy and Autoimmune Conditions
 
-### Jonathan M. Anzules, Kristen M. Valentine, Genevieve N. Mullins, Anh L. Diep,  
-### Lihong Zhao, Suzanne S. Sindi, Katrina K. Hoyer
+### Jonathan M. Anzules, Kristen M. Valentine, Genevieve N. Mullins, Anh L. Diep, Lihong Zhao, Suzanne S. Sindi, Katrina K. Hoyer
 ---
 
 ![Visual Abstract](./Images/VisualAbstract.png)
