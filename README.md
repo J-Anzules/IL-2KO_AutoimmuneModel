@@ -1,12 +1,17 @@
-# Modeling the homeostatic expansion of the immune system in a healthy and autoimmune system
-### Jonathan M. Anzules, Kristen M. Valentine, Genevieve N. Mullins, Anh L. Diep, Lihong Zhao, Suzanne S. Sindi, Katrina K. Hoyer
---------------------------------------------
-![Alt text](./Images/VisualAbstract.png "Modeling Homeostatic Expansion")
+# Modeling the Homeostatic Expansion of the Immune System in Healthy and Autoimmune Conditions
 
+### Jonathan M. Anzules, Kristen M. Valentine, Genevieve N. Mullins, Anh L. Diep,  
+### Lihong Zhao, Suzanne S. Sindi, Katrina K. Hoyer
+---
+
+![Visual Abstract](./Images/VisualAbstract.png)
+
+---
+## **Abstract**
 
 Autoimmune diseases arise from dysregulated immune homeostasis driven by failed self-tolerance mechanisms through a complex, multifactoral pathogenesis that is not fully understood. We developed a mathematical framework to simulate the progression of systemic autoimmune disease, calibrated against experimental data from spontaneous autoimmune manifestations in IL-2-deficient BALB/c mice. Our computational model simulates the dynamics of IL-2 signaling within the thymic and splenic CD4 T cell populations, focusing on its role in supporting regulatory T cells that maintain immune tolerance and prevent autoimmune pathology. Through comparative analysis of our simulations, we identified deficient expansion trajectories in naive and regulatory T cells within the autoimmune phenotype compared to wild-type controls. Analysis of the mathematical model demonstrates robustness in early regulatory T cell dysfunction, identifies parameter values that avert autoimmune progression, and clarifies the system-level impact of IL-2 deficiency on CD4 T cell homeostasis. This mathematical model systematically examines the early stages of autoimmune pathogenesis, providing quantitative insights into how early Treg dysfunction, IL-2 insufficiency, and ineffective suppression of naive T cell activation contribute to the progression of autoimmune disease.
 
-------------------------------------
+---
 
 This project explores the systemic differences between a healthy and autoimmune system. We represent the homeostatic dynamics that work properly during healthy development and the cascading failure seen in the IL-2 knock system that leads to autoimmune disease. Below is a diagram of the model:
 
